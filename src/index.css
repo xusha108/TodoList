@@ -1,0 +1,65 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.wrapper {
+  margin: 0 auto;
+  padding-top: 5rem;
+  width: 600px;
+}
+
+h1{
+  color:rgb(76, 71, 71);
+ }
+ 
+.list {
+  list-style:none;
+  margin: 0;
+  padding: 0;
+}
+.list_items {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;   
+  margin: 1rem;
+  padding: .5rem 1rem;
+  width: 100%;
+  font-size: 24px; 
+  border: 1px solid #999;
+  border-radius: 4px;
+  box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  margin-bottom: .5rem;
+  transition: border, box-shadow .3s;
+  color:rgb(76, 71, 71);
+  
+}
+
+input{
+  margin-right: .5rem;
+}
+
+.btn_deleted{
+  border-radius: .2rem;
+  transition: border, box-shadow .3s;
+}
+
+.btn_deleted:hover{
+    border: 1px solid #aaa;
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, .25);
+    cursor: pointer;
+}
+
+.done{
+  text-decoration: line-through;
+}
