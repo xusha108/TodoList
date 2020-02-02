@@ -1,81 +1,29 @@
-const INPUT_CHANGED = 'INPUT_CHANGED';
-const INPUT_SUBMIT = 'INPUT_SUBMIT';
-const LIST_ITEM_CLICK = 'LIST_ITEM_CLICK';
-const DELETE_LIST_ITEM = 'DELETE_LIST_ITEM';
+import { LIST_ITEM_CLICK, DELETE_LIST_ITEM, INPUT_SUBMIT, INPUT_CHANGED  } from '../constans'
 
-export function listItemClick(index){
+export const listItemClick = (index) =>{
   return {
     type: LIST_ITEM_CLICK,
-    index
+    index 
   }
 }
 
-export function deleteListItem(index) {
+export const deleteListItem = (index) => {
   return {
     type: DELETE_LIST_ITEM,
     index
   }
 }
 
-export function inputSubmit(){
+export const inputSubmit = () => {
   return {
     type: INPUT_SUBMIT
   };
 }
 
-export function inputChange(value){
+export const inputChange = (value) => {
   return {
     type: INPUT_CHANGED,
     value
   }
 }
 
-const initialState = {
-  list: [{item: 'test', done: false}],
-  newToDo: ''
-};
-
-export default function reducer(state = initialState, action){
-  switch (action.type){
-  case INPUT_SUBMIT:
-    return Object.assign(
-      {},
-      state,
-      {
-        list: [...state.list, {item: state.newToDo, done: false }],
-        newToDo: ''
-      }
-    );
-  case INPUT_CHANGED:
-    return Object.assign(
-      {},
-      state,
-      {newToDo: action.value}
-    );
-  case LIST_ITEM_CLICK:
-    return Object.assign(
-      {},
-      state,
-      {
-        list: [
-          ...state.list.slice(0, action.index),
-          Object.assign({}, state.list[action.index], {done: !state.list[action.index].done}),
-          ...state.list.slice(action.index+1)
-        ]
-      }
-    );
-  case DELETE_LIST_ITEM:
-    return Object.assign(
-      {},
-      state,
-      {
-        list: [
-          ...state.list.slice(0, action.index),
-          ...state.list.slice(action.index+1)
-        ]
-      }
-    );
-  default:
-    return state;
-  }
-}

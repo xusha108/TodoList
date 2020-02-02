@@ -1,61 +1,91 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ToDoList from './toDo/ToDoList'
-import Context from './Context'
 import AddTodo from './toDo/AddTodo'
+import {connect} from 'react-redux';
+import { listItemClick, deleteListItem, inputSubmit, inputChange } from './actions/actions'
 
 
-function App() {
+class App extends Component {
 
-  const [todos, setTodos] = React.useState( [
-    {id: 1, completed: false, title:'Выучить React' },
-    {id: 2, completed: true, title:'Понять Redux' },
-    {id: 3, completed: false, title:'Cоздавать понятный код' }
-  ])
+  // const [todos, setTodos] = React.useState( [
+  //   {id: 1, completed: false, title:'Выучить React' },
+  //   {id: 2, completed: true, title:'Понять Redux' },
+  //   {id: 3, completed: false, title:'Cоздавать понятный код' }
+  // ])
 
-  function toggleToDo(id) {
-    setTodos(
-    todos.map( todo => {
-      if (todo.id === id) {
-        todo.completed = !todo.completed
-      }
-      return todo
-    })
-  )
-}
+  // function toggleToDo(id) {
+  //   setTodos(
+  //   todos.map( todo => {
+  //     if (todo.id === id) {
+  //       todo.completed = !todo.completed
+  //     }
+  //     return todo
+  //   })
+  // )
+//}
+
 // удаляем item нажатием на кнопку
-function removeTodo(id) {
-  setTodos(todos.filter(todo => todo.id !== id))
-}
+// function removeTodo(id) {
+//   setTodos(todos.filter(todo => todo.id !== id))
+// }
 // добавляем todo в пустой инпут
-function addTodo(title) {
-  setTodos(
-    todos.concat([
-      {
-        title,
-        id:Date.now(), //?
-        completed: false
+// function addTodo(title) {
+//   setTodos(
+//    todos.concat([
+//       {
+//         title,
+//         id:Date.now(), 
+//         completed: false
 
-      }
-    ])
-  )
-}
+//       }
+//     ])
+//   )
+// }
 
-  return (
-    <Context.Provider value={{removeTodo: removeTodo}}> 
+render() {
+  const {listItemClick, deleteListItem, inputSubmit, inputChange} = this.props;
+  const {list, textFromTextarea} = this.props;
+console.log('list', list.length)
+    return (
+       
       <div className='wrapper'>
         <h1>todos</h1>
 
-        <AddTodo onCreate={addTodo} />   
+        <AddTodo 
+          inputSubmit={ inputSubmit }
+          inputChange={inputChange} 
+          textFromTextarea={ textFromTextarea}
+        />       
 
-        {todos.length ? (
-          <ToDoList todos={todos} onToggle={toggleToDo} />
+        {list.length ? (
+          <ToDoList
+            listItemClick={listItemClick}
+            deleteListItem={deleteListItem}
+            list={list}
+          />
         ) : (
           <p> NO todos! </p>
         )}
       </div>
-    </Context.Provider> 
-    
-  )
-}
-// тернарный оператор, при условии отсутствия todos
-export default App;
+     
+    )
+  }
+} 
+  
+
+const mapStateToProps = (state) => {
+  console.log('state ', state);
+  
+  return {
+      list: state.todo.list, 
+      textFromTextarea: state.todo.textFromTextarea,
+
+  };
+};
+
+export default connect(mapStateToProps, {
+  listItemClick,
+  deleteListItem,
+  inputSubmit,
+  inputChange
+})(App);
