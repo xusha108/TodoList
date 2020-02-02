@@ -7,6 +7,6 @@ const rootReducer = combineReducers({
     todo,
 
     
-}); //все редьюсеры, возвращает обьект
+}); 
 
 export default rootReducer;

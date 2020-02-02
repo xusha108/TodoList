@@ -45,7 +45,7 @@ class App extends Component {
 render() {
   const {listItemClick, deleteListItem, inputSubmit, inputChange} = this.props;
   const {list, textFromTextarea} = this.props;
-console.log('list', list.length)
+
     return (
        
       <div className='wrapper'>
@@ -74,7 +74,6 @@ console.log('list', list.length)
   
 
 const mapStateToProps = (state) => {
-  console.log('state ', state);
   
   return {
       list: state.todo.list, 

@@ -6,10 +6,9 @@ class AddTodo extends Component {
     render() {
        const {inputSubmit, inputChange, textFromTextarea} = this.props
         
-       const submitHandler = (event) =>  {
-           event.preventDefault() //чтобы страница не перегружалась
-   
-           if (textFromTextarea.trim()) //удаляем все пробелы
+       const saveTodo = () =>  {
+              
+           if (textFromTextarea.trim()) 
            {
                inputSubmit()
                inputChange('') 
@@ -17,9 +16,9 @@ class AddTodo extends Component {
        }
    
        return (
-           <form style={{marginLeft: '1rem'}} onSubmit={submitHandler}>
+           <form style={{marginLeft: '1rem'}}>
                <input value={textFromTextarea} onChange={ event => inputChange(event.target.value)}/>
-               <button className='btn_deleted' type='submit'> Add todo </button>
+               <button className='btn_deleted' type='button' onClick={saveTodo}> Add todo </button>
            </form>
        )
     }

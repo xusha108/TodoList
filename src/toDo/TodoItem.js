@@ -25,7 +25,7 @@ class TodoItem extends Component {
                     {todo.title}
                     
                 </span>
-                <button className='btn_deleted' onClick={deleteListItem(index)}> 
+                <button className='btn_deleted' onClick={() => deleteListItem(index)}> 
                     &times;
                 </button> 
             </li>

@@ -7,7 +7,7 @@ const initialState = {
   
   export default function reducer(state = initialState, {type, index, value}){
       
-    console.log('action', {type:type, index:index, value:value})
+    
     switch (type){
     case INPUT_SUBMIT:
       return Object.assign(
